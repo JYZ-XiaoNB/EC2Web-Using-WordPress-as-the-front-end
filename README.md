@@ -113,19 +113,3 @@ WordPress的区块编辑器（Gutenberg）对短代码的处理方式与传统�
 - 插件输出被过滤
 
 - 前端资源未正确加载
-  
-## 更改域名链接CloudFront ##
-
-将EC2的公有DNS链接添加到Clooud Front的源中并添加行为**因为EC2只有HTTP，所以在行为中选择HTTP和HTTPS**
-打开EC2的Wordpress后台，在"设置" → "常规" 中将原来的EC2域名换成自己的域名。
-**注意：**
-  如果出现问题，也可以在EC2中修改Sql来更改域名
-进入MySQL
-    `mysql -u 用户名 -p`
-选择wordpress的数据库
-    `USE 数据库名;`
-检查当前域名设置
-    `SELECT * FROM wp_options WHERE option_name IN ('siteurl', 'home');`
-更新为新域名
-    `UPDATE wp_options SET option_value = 'https://你的新域名.com' WHERE option_name = 'siteurl';`
-    `UPDATE wp_options SET option_value = 'https://你的新域名.com' WHERE option_name = 'home';`
